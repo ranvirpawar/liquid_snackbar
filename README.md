@@ -183,6 +183,15 @@ overlay throws a clear StateError rather than silently dropping notifications.
 - Its scope is explicit queue ownership, bounded scheduling, safe completion and accessible interaction rather than a large catalog of effects.
 - These packages overlap; choose the one matching your visual design and maintenance needs.
 
+## Platform status
+
+Android is the only declared platform in 0.1.0 at this review stage.
+Android/iOS/Windows widget layouts are tested on the host runner. Android APK
+compilation succeeds and web release compilation succeeds. Native iOS and
+Windows builds, and browser runtime checks, remain unverified; the prepared CI
+must pass before adding those platform claims. Pure Flutter code and static
+portability analysis alone are not treated as native runtime verification.
+
 ## Example and verification
 
 Run `cd example` then `flutter run`. The gallery includes every variant, both

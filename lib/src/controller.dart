@@ -122,6 +122,11 @@ class LiquidSnackbarController {
       _batching = true;
       _finish(_visible.first, LiquidSnackbarCloseReason.replaced);
       _batching = previousBatching;
+      // A replacement callback may synchronously dispose/detach this scope.
+      if (_disposed || !(_overlay?.mounted ?? false)) {
+        _finish(handle, LiquidSnackbarCloseReason.disposed);
+        return handle;
+      }
     }
     if (_visible.length < config.maxVisible && !_batching) {
       _visible.add(handle);

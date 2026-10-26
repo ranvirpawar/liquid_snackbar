@@ -304,6 +304,10 @@ class _NotificationCardState extends State<_NotificationCard>
         ),
       ),
     );
+    content = ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 48),
+      child: content,
+    );
     if (request.quick) content = IntrinsicWidth(child: content);
 
     // Label text once; retain child action/close button semantics.

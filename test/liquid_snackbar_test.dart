@@ -880,4 +880,84 @@ void main() {
       throwsArgumentError,
     );
   });
+  testWidgets('replacement callback disposal completes the incoming handle', (
+    tester,
+  ) async {
+    final c = owned(
+      config: const LiquidSnackbarConfig(policy: LiquidSnackbarPolicy.replace),
+    );
+    await mount(tester, c);
+    c.show(note('old', onDismissed: (_) => c.dispose()));
+    await enter(tester);
+    final incoming = c.show(note('new'));
+    expect(await incoming.closed, LiquidSnackbarCloseReason.disposed);
+    expect(c.visibleCount, 0);
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('quick pills expose at least a 48dp touch target', (
+    tester,
+  ) async {
+    final c = owned();
+    await mount(tester, c);
+    c.show(
+      const LiquidSnackbarRequest(message: 'OK', quick: true, duration: null),
+    );
+    await enter(tester);
+    final targets = find.ancestor(
+      of: find.text('OK'),
+      matching: find.byType(GestureDetector),
+    );
+    expect(tester.getSize(targets.first).height, greaterThanOrEqualTo(48));
+  });
+
+  testWidgets(
+    'long top and bottom stacks share a narrow viewport without overlap',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(320, 480));
+      final c = owned(config: const LiquidSnackbarConfig(maxVisible: 2));
+      await mount(tester, c, scale: 2);
+      c.show(
+        note(
+          List.filled(30, 'Top').join(' '),
+          position: LiquidSnackbarPosition.top,
+        ),
+      );
+      c.show(note(List.filled(30, 'Bottom').join(' ')));
+      await enter(tester);
+      final views = find.byType(SingleChildScrollView);
+      expect(views, findsNWidgets(2));
+      expect(
+        tester.getBottomLeft(views.first).dy,
+        lessThanOrEqualTo(tester.getTopLeft(views.last).dy),
+      );
+      expect(tester.takeException(), isNull);
+      c.dismissAll();
+      await tester.pumpWidget(const SizedBox());
+      await tester.binding.setSurfaceSize(null);
+    },
+  );
+
+  test(
+    'default text and accents have AA contrast over worst-case white backing',
+    () {
+      const theme = LiquidSnackbarTheme();
+      for (final style in theme.variantStyles.values) {
+        final glass = Color.alphaBlend(
+          style.color.withValues(alpha: theme.tintOpacity),
+          theme.surfaceColor.withValues(alpha: theme.surfaceOpacity),
+        );
+        final surface = Color.alphaBlend(glass, Colors.white);
+        final contrast =
+            (Colors.white.computeLuminance() + .05) /
+            (surface.computeLuminance() + .05);
+        expect(contrast, greaterThanOrEqualTo(4.5));
+        final accentContrast =
+            (style.color.computeLuminance() + .05) /
+            (surface.computeLuminance() + .05);
+        expect(accentContrast, greaterThanOrEqualTo(3));
+      }
+    },
+  );
 }

@@ -196,44 +196,64 @@ class _NotificationLayerState extends State<_NotificationLayer> {
           math.max(media.viewPadding.bottom, media.viewInsets.bottom) +
               margin.bottom,
         ),
-        child: Stack(
-          children: [
-            for (final position in LiquidSnackbarPosition.values)
-              Align(
-                alignment: position == LiquidSnackbarPosition.top
-                    ? Alignment.topCenter
-                    : Alignment.bottomCenter,
-                child: SingleChildScrollView(
-                  reverse: position == LiquidSnackbarPosition.bottom,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      for (final handle in widget.controller._visible.where(
-                        (h) => h._request.position == position,
-                      ))
-                        Padding(
-                          padding: EdgeInsets.only(bottom: theme.gap),
-                          child: Align(
-                            alignment: theme.alignment,
-                            heightFactor: 1,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth: theme.maxWidth,
-                              ),
-                              child: _NotificationCard(
-                                key: handle._key,
-                                handle: handle,
-                                theme: theme,
-                                labels: widget.controller._labels,
+        child: LayoutBuilder(
+          builder: (context, constraints) => Stack(
+            children: [
+              for (final position in LiquidSnackbarPosition.values)
+                Align(
+                  alignment: position == LiquidSnackbarPosition.top
+                      ? Alignment.topCenter
+                      : Alignment.bottomCenter,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight:
+                          constraints.maxHeight /
+                          (widget.controller._visible.any(
+                                    (h) =>
+                                        h._request.position ==
+                                        LiquidSnackbarPosition.top,
+                                  ) &&
+                                  widget.controller._visible.any(
+                                    (h) =>
+                                        h._request.position ==
+                                        LiquidSnackbarPosition.bottom,
+                                  )
+                              ? 2
+                              : 1),
+                    ),
+                    child: SingleChildScrollView(
+                      reverse: position == LiquidSnackbarPosition.bottom,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (final handle in widget.controller._visible.where(
+                            (h) => h._request.position == position,
+                          ))
+                            Padding(
+                              padding: EdgeInsets.only(bottom: theme.gap),
+                              child: Align(
+                                alignment: theme.alignment,
+                                heightFactor: 1,
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    maxWidth: theme.maxWidth,
+                                  ),
+                                  child: _NotificationCard(
+                                    key: handle._key,
+                                    handle: handle,
+                                    theme: theme,
+                                    labels: widget.controller._labels,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                    ],
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
