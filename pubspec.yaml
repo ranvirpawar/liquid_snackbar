@@ -23,6 +23,9 @@ screenshots:
   - description: Glass notification cards, an accessible action, and a compact pill.
     path: doc/screenshots/glass.png
 
-# Native iOS/desktop and web runtime checks are pending; see VALIDATION.md.
+# Verified builds and browser checks: see VALIDATION.md.
 platforms:
   android:
+  ios:
+  web:
+  windows:

@@ -11,7 +11,8 @@ state-management integration, assets, network calls, or custom fonts required.
 ## Quick start: three steps
 
 1. Add `liquid_snackbar: ^0.1.0` to your app's dependencies (after publication).
-   For local evaluation use `path: ../liquid_snackbar`.
+   For local evaluation use `path: ../liquid_snackbar`. Ensure your app has
+   `flutter: uses-material-design: true` for Material status icons.
 2. Add the preferred scoped host inside your app builder:
 
 ```dart
@@ -185,12 +186,12 @@ overlay throws a clear StateError rather than silently dropping notifications.
 
 ## Platform status
 
-Android is the only declared platform in 0.1.0 at this review stage.
-Android/iOS/Windows widget layouts are tested on the host runner. Android APK
-compilation succeeds and web release compilation succeeds. Native iOS and
-Windows builds, and browser runtime checks, remain unverified; the prepared CI
-must pass before adding those platform claims. Pure Flutter code and static
-portability analysis alone are not treated as native runtime verification.
+Android, iOS, web and Windows are declared after successful verification.
+Android APK, iOS simulator and Windows desktop builds pass in CI. The full
+widget/logic suite also passes in Chrome, alongside web release compilation.
+Flutter 3.41.6 / Dart 3.11.4 and Flutter 3.47.8 / Dart 3.13.7 are tested.
+macOS and Linux native application builds are not claimed.
+Physical-device accessibility and performance checks remain release follow-up.
 
 ## Example and verification
 
