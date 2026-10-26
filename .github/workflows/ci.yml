@@ -1,0 +1,50 @@
+name: Package quality
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - version: '3.41.6'
+          - version: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ matrix.version }}
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: dart format --set-exit-if-changed .
+      - run: flutter test --coverage
+      - run: dart run tool/check_coverage.dart
+      - run: flutter test
+        working-directory: example
+      - run: flutter build web
+        working-directory: example
+      - run: dart pub publish --dry-run
+  native:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            command: flutter build apk --debug
+          - os: macos-latest
+            command: flutter build ios --simulator --debug
+          - os: windows-latest
+            command: flutter build windows --debug
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+        working-directory: example
+      - run: ${{ matrix.command }}
+        working-directory: example
