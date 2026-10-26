@@ -12,7 +12,7 @@ state-management integration, assets, network calls, or custom fonts required.
 
 1. Add `liquid_snackbar: ^0.1.0` to your app's dependencies (after publication).
    For local evaluation use `path: ../liquid_snackbar`. Ensure your app has
-   `flutter: uses-material-design: true` for Material status icons.
+   `uses-material-design: true` enabled under its `flutter:` section for Material status icons.
 2. Add the preferred scoped host inside your app builder:
 
 ```dart
