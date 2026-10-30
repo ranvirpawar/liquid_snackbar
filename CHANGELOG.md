@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Show glass notification styles first and the mobile-first app concept second
+  in both the README and pub.dev gallery. Runtime code and API are unchanged.
+
 ## 0.1.2
 
 - Add mobile-first promotional artwork featuring a fictional iOS-style app.

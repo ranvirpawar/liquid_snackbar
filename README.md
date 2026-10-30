@@ -6,17 +6,19 @@ Small, polished glass notifications with bounded queues and explicit ownership.
 Flutter SDK only. No third-party runtime dependencies, global navigator key,
 state-management integration, assets, network calls, or custom fonts required.
 
-![Mobile-first Liquid Snackbar promotional concept](https://raw.githubusercontent.com/ranvirpawar/liquid_snackbar/v0.1.2/doc/promotional/liquid-snackbar-mobile-v1.png)
-
-*Promotional UI concept in a fictional iOS-style app. Runtime styling is unchanged.*
-
 ### Glass notification styles
 
 ![Liquid Snackbar promotional artwork](https://raw.githubusercontent.com/ranvirpawar/liquid_snackbar/v0.1.2/doc/promotional/liquid-snackbar-promo-v1.png)
 
+### Mobile-first app concept
+
+![Mobile-first Liquid Snackbar promotional concept](https://raw.githubusercontent.com/ranvirpawar/liquid_snackbar/v0.1.2/doc/promotional/liquid-snackbar-mobile-v1.png)
+
+*Promotional UI concept in a fictional iOS-style app. Runtime styling is unchanged.*
+
 ## Quick start: three steps
 
-1. Add `liquid_snackbar: ^0.1.2` to your app's dependencies.
+1. Add `liquid_snackbar: ^0.1.3` to your app's dependencies.
    For local evaluation use `path: ../liquid_snackbar`. Ensure your app has
    `uses-material-design: true` enabled under its `flutter:` section for Material status icons.
 2. Add the preferred scoped host inside your app builder:
