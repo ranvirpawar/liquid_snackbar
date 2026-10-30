@@ -1,6 +1,6 @@
 name: liquid_snackbar
 description: Polished glass snackbars and compact toasts with bounded queues, safe lifecycle management, accessible actions, and Flutter-only dependencies.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/ranvirpawar/liquid_snackbar
 issue_tracker: https://github.com/ranvirpawar/liquid_snackbar/issues
 environment:
@@ -20,6 +20,8 @@ topics:
   - accessibility
   - animation
 screenshots:
+  - description: AI-generated promotional concept; the README also shows actual Flutter rendering.
+    path: doc/promotional/liquid-snackbar-promo-v1.png
   - description: Glass notification cards, an accessible action, and a compact pill.
     path: doc/screenshots/glass.png
 

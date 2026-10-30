@@ -21,3 +21,6 @@ example/android/gradlew
 example/android/gradlew.bat
 example/android/gradle/wrapper/gradle-wrapper.jar
 .validation/
+
+# Reproduction prompt stays in GitHub, outside the distributed library archive.
+doc/promotional/*.prompt.txt

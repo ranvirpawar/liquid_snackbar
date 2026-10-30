@@ -1,6 +1,9 @@
 # Validation and publication checklist
 
-No OMS app code was changed. No version has been uploaded to pub.dev.
+No OMS app code was changed. Version 0.1.0 was published on 26 October 2026.
+Version 0.1.1 updates artwork, README links and release metadata only; runtime
+implementation and tests are unchanged. The public package is
+https://pub.dev/packages/liquid_snackbar.
 
 ## Result
 
@@ -56,7 +59,7 @@ Android debug APK builds also passed locally on both SDKs. Preserved local
 artifacts are `.validation/app-minimum-debug.apk` and
 `.validation/app-latest-debug.apk`. The latest APK SHA-256 is
 `C86CD2FBFE7BE4EEA314FC22DF6E0EADC800F41B638C0EF4EFE5DC1C1F9A1107`.
-No release tag or pub.dev upload was created.
+The initial release was subsequently published and tagged v0.1.0.
 
 ## What the tests cover
 
@@ -130,5 +133,5 @@ needs official WebP executables on PATH. Generate the preview with
 - Test TalkBack/VoiceOver, haptics and blur performance on real Android/iOS devices.
 - Check contrast if changing translucent colors or typography.
 - Review the file list from a fresh zero-warning dry run.
-- Tag the approved commit `v0.1.0`.
+- Tag each approved release commit with its matching version.
 - Run `dart pub publish` only after explicit authorization.

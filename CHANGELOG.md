@@ -1,3 +1,11 @@
+## 0.1.1
+
+- Add polished promotional artwork to the README and pub.dev gallery, clearly
+  distinguished from the retained actual Flutter rendering.
+- Add a live pub.dev version badge and direct package link to the GitHub README.
+- Refresh installation and publication documentation. Runtime API and styling
+  are unchanged.
+
 ## 0.1.0
 
 - Extract the glass notification interaction into a Flutter-only package.
