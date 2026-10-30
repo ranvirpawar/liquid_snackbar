@@ -1,7 +1,7 @@
 # Validation and publication checklist
 
 No OMS app code was changed. Version 0.1.0 was published on 26 October 2026.
-Version 0.1.1 updates artwork, README links and release metadata only; runtime
+Versions 0.1.1 and 0.1.2 update artwork, README links and release metadata only; runtime
 implementation and tests are unchanged. The public package is
 https://pub.dev/packages/liquid_snackbar.
 
@@ -71,7 +71,7 @@ insets, host/overlay disposal, reduced motion, live semantics, localized labels,
 long stacks and all three setup paths. Coverage is source line coverage, not
 branch coverage or a substitute for device testing.
 
-The README preview is an actual Flutter render with SDK fonts, visually checked.
+The public README and gallery now show only labeled promotional concepts, including a fictional iOS-style mobile app. The old runtime screenshot is removed. Runtime captures are generated privately under .validation/ for verification only.
 The gallery demonstrates every built-in/custom variant, both positions, actions,
 queue limits, deduplication, progress, custom theme, dark mode, reduced motion,
 solid fallback, RTL and keyboard avoidance.
@@ -122,7 +122,7 @@ dart pub global run pana --exit-code-threshold 20 .
 
 Use Linux for latest pana; on Windows the documented older-pana fallback also
 needs official WebP executables on PATH. Generate the preview with
-`flutter test tool/capture_preview.dart`.
+`flutter test tool/capture_preview.dart`; output stays in `.validation/`.
 
 ## Remaining release checks
 

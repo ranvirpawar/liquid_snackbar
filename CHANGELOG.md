@@ -1,3 +1,13 @@
+## 0.1.2
+
+- Add mobile-first promotional artwork featuring a fictional iOS-style app.
+- Show only promotional artwork in the README and pub.dev gallery; remove the
+  earlier runtime screenshot from the package.
+- Use direct, release-pinned raw image URLs for consistent image hosting across
+  GitHub and the pub.dev README.
+- Remove the redundant live-package text link; retain the pub.dev version badge
+  and GitHub About website link. Runtime code and API are unchanged.
+
 ## 0.1.1
 
 - Add polished promotional artwork to the README and pub.dev gallery, clearly

@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:liquid_snackbar/liquid_snackbar.dart';
 
 void main() {
-  testWidgets('capture actual rendered package preview', (tester) async {
+  testWidgets('capture private runtime preview for validation', (tester) async {
     await tester.binding.setSurfaceSize(const Size(720, 960));
     await tester.runAsync(() async {
       final configUri = File('.dart_tool/package_config.json').absolute.uri;
@@ -130,10 +130,11 @@ void main() {
     final render =
         boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     await tester.runAsync(() async {
+      await Directory('.validation').create(recursive: true);
       final image = await render.toImage();
       final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
       await File(
-        'doc/screenshots/glass.png',
+        '.validation/flutter-runtime-preview.png',
       ).writeAsBytes(bytes!.buffer.asUint8List());
       image.dispose();
     });
